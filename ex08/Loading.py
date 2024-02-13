@@ -1,14 +1,44 @@
+from tqdm import tqdm
+from time import sleep
 import time
+import shutil
 
-def ft_tqdm(lst):
-    total = len(lst)
-    start_time = time.time()
-    for i, item in enumerate(lst):
-        yield item
-        progress = i + 1
-        elapsed_time = time.time() - start_time
-        eta = elapsed_time * (total / progress - 1) if progress > 0 else 0
-        # Customize the progress bar format as desired
-        percentage = progress / total * 100
-        print(f"\r{percentage:.0f}")
-        # print(f"\rProgress: {progress}/{total} - ETA: {eta:.2f}s", end="")
+PROGRESS_LEN = shutil.get_terminal_size().columns - 30
+
+def	formatTime(seconds: float) -> str:
+	m, s = divmod(seconds, 60)
+	return f"{int(m):02d}:{int(s):02d}"
+
+def ft_tqdm(lst) -> None:
+	total = len(lst)
+	start_time = time.time()
+	progressBarWidth = PROGRESS_LEN - 10
+	for i, item in enumerate(lst, start=1):
+		progress = int(i / total * progressBarWidth)
+		elapsed_time = time.time() - start_time
+		speed = (i / elapsed_time) if elapsed_time != 0.0 else 0.0
+		eta = (total - i) / speed if speed != 0 else 0
+		
+		elapsed_formatted = formatTime(elapsed_time)
+		eta_formatted = formatTime(eta)
+		
+		progress_bar = f"|{'█' * progress:<{progressBarWidth}}|"
+		progressPercentage = progress * 100 // progressBarWidth
+		progressInfo = f"{progressPercentage}%{progress_bar} {i}/{total}"
+		timeInfo = f"[{elapsed_formatted}<{eta_formatted}, {speed:.2f}it/s]"
+
+		print(f"\r{progressInfo} {timeInfo}", end="", flush=True)
+		yield item
+
+if __name__ == '__main__':
+	print("\n\033[1;31;40m************************************************************\
+ My Function ******************************************************************\033[0m\n")
+	for elem in ft_tqdm(range(333)):
+		sleep(0.005)
+	print()
+
+	print("\n\033[1;31;40m************************************************************\
+ BuiltIn Function ************************************************************\033[0m\n")
+	for elem in tqdm(range(333)):
+		sleep(0.005)
+	print()
