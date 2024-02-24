@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 import sys
 import os
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 def	print_rows_first_elem(arr, int):
 	count = 0
@@ -44,10 +44,10 @@ def	main():
 		grayScaleImage = zoomedImg.convert('L')
 		grayScaleImage.show()
 		print_rows_first_elem(np.array(grayScaleImage), 1)
-		plt.imshow(zoomedImg)
-		plt.title("Zoomed Image")
-		plt.axis('on')
-		plt.show()
+		# plt.imshow(zoomedImg)
+		# plt.title("Zoomed Image")
+		# plt.axis('on')
+		# plt.show()
 	except AssertionError as error:
 		print(AssertionError.__name__ + ":", error)
 	
