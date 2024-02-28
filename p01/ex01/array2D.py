@@ -1,6 +1,18 @@
 import numpy as np
 
 def	slice_me(family: list, start: int, end: int) -> list:
+	"""
+
+	Array is passed to this function along with two int values which
+	is the starting and ending of the list. The function is used to create
+	a new list which will have the range of the list from start to end and
+	return it
+
+	Args: family: list, start: int, end: int
+
+	Return Values: List type
+	
+	"""
 	try:
 		if not isinstance(family, list) \
 				or not isinstance(start, int) or not isinstance(end, int):
@@ -15,6 +27,11 @@ def	slice_me(family: list, start: int, end: int) -> list:
 		return ""
 	
 if	__name__ == '__main__':
+	"""
+
+	Test Cases
+	
+	"""
 	family = [[1.80, 78.4],
 			[2.15, 102.7],
 			[2.10, 98.5],
