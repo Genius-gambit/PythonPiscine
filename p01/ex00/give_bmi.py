@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 def	give_bmi(height: list[int | float], weight: list[int | float])\
 	-> list[int | float]:
 	
