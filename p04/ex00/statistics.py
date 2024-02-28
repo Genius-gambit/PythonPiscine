@@ -8,9 +8,8 @@ def ft_statistics(*args: Any, **kwargs: Any) -> None:
 		numArgs += 1
 		total += arg
 		values.append(arg)
-	
 	if numArgs == 0:
-		for value in kwargs.items:
+		for value in kwargs.items():
 			print("Error")
 		return
 	
